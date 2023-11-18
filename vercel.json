@@ -2,7 +2,7 @@
   "builds":[{
     "src":"SchoolDatabaseTrial/wsgi.py",
     "use":"@vercel/python",
-    "config": {"maxLambdaSize":"250mb", "runtime": "python3.9"}
+    "config": {"maxLambdaSize":"250mb", "runtime": "python3.9.7"}
   }],
   "routes":[
     {"src":"/(.*)",
