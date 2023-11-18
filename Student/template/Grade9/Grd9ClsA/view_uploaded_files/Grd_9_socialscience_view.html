@@ -1,0 +1,43 @@
+{% extends 'Grade9/Grd9ClsA/Grd_9_ClsA_std.html' %}
+{% load crispy_forms_tags %}
+{% block dashboard-body %}
+<!-- This code recognizes the code is and labels the grade 6 user !-->
+Grade 9 student class A
+<!-- This tag executes if the user is student A !-->
+
+
+
+
+
+{% if user.is_Grade_9_student_classA %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd9_classA_teacher %}
+		{% if teacher.Grade_9_SocSnc_subj_teach %}
+			{% if teacher.Grade9_socscn_teacher_one %}
+			Display Social science Data<br>
+			<h6>Social science teacher1</h6>
+				{{teacher.username}}<br>
+				{% for socialsnc_type_one in socialsnc_type_ones %}
+					{{socialsnc_type_one.Grd9_SocScn_Title}}<br>
+					<a href="{{socialsnc_type_one.Grd9_SocScn_file.url}}">Download File</a><br>
+					{{socialsnc_type_one.Grd9_SocScn_Desc}}<br>
+					{{socialsnc_type_one.Grd9_SocScn_posted_date}}<br>
+				{% endfor %}
+				<h1 style="color: green;">ACTIVATED</h1>
+			
+			{% elif teacher.Grade9_socscn_teacher_two %}
+				<h6>Social science teacher 2</h6>
+					{{teacher.username}}<br>
+				{% for socialsnc_type_two in socialsnc_type_twos %}
+					{{socialsnc_type_two.Grd9_SocScn_Title}}<br>
+					<a href="{{socialsnc_type_two.Grd9_SocScn_file.url}}">Download File</a><br>
+					{{socialsnc_type_two.Grd9_SocScn_Desc}}<br>
+					{{socialsnc_type_two.Grd9_SocScn_posted_date}}<br>
+				{% endfor %}
+					<h1 style="color: green;">ACTIVATED</h1>
+			{% endif %}		
+		{% endif %}
+	{% endif %} 
+{% endfor %}<!-- This closes the code !-->
+{% endif %}
+{% endblock %}

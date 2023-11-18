@@ -1,0 +1,43 @@
+{% extends 'Grade9/Grd9ClsA/Grd_9_ClsA_std.html' %}
+{% load crispy_forms_tags %}
+{% block dashboard-body %}
+<!-- This code recognizes the code is and labels the grade 6 user !-->
+Grade 9 student class A
+<!-- This tag executes if the user is student A !-->
+
+
+
+
+
+{% if user.is_Grade_9_student_classA %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd9_classA_teacher %}
+		{% if teacher.Grade_9_Math_subj_teach %}
+			{% if teacher.Grade9_math_teacher_one %}
+			Display Science Data<br>
+			<h6>Science teacher1</h6>
+				{{teacher.username}}<br>
+				{% for science_type_one in science_type_ones %}
+					{{science_type_one.Grd9_Scn_Title}}<br>
+					<a href="{{science_type_one.Grd9_Scn_file.url}}">Download File</a><br>
+					{{science_type_one.Grd9_Scn_Desc}}<br>
+					{{science_type_one.Grd9_Scn_posted_date}}<br>
+				{% endfor %}
+				<h1 style="color: green;">ACTIVATED</h1>
+			
+			{% elif teacher.Grade9_math_teacher_two %}
+				<h6>Science teacher 2</h6>
+					{{teacher.username}}<br>
+				{% for science_type_two in science_type_twos %}
+					{{science_type_two.Grd9_Scn_Title}}<br>
+					<a href="{{science_type_two.Grd9_Scn_file.url}}">Download File</a><br>
+					{{science_type_two.Grd9_Scn_Desc}}<br>
+					{{science_type_two.Grd9_Scn_posted_date}}<br>
+				{% endfor %}
+					<h1 style="color: green;">ACTIVATED</h1>
+			{% endif %}		
+		{% endif %}
+	{% endif %} 
+{% endfor %}<!-- This closes the code !-->
+{% endif %}
+{% endblock %}

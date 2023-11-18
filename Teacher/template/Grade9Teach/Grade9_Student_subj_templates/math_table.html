@@ -1,0 +1,73 @@
+<div class="card flex-fill w-100">
+              <div class="card">
+               
+                <div class="card-header">
+                  <h5 class="card-title">Math Assesments</h5>
+                  <h6 class="card-subtitle text-muted">Choose the teachers you wish to edit</h6>
+                </div>
+                         <table class="table table-striped table-hover">
+                <thead style=" font-weight: bold;">
+                  <tr>
+                    <td>Student name</td>
+                    <td>Maths_Title</td>
+                    <td>Maths_Desc</td>
+                    <td>Maths_Marks</td>
+                    <td>Maths_OutOfMarks</td>
+                    <td>Maths_DatePosted</td>
+
+                 
+                   </tr>
+                </thead>
+                
+<!-- 
+
+
+
+   -->  
+                      
+
+              
+               
+                <tbody>
+                          
+   {% for subject in subjects%}
+              <tr>
+                 <td>
+                      {{subject.user_Name.first_name}} {{subject.user_Name.last_name}}
+                     
+                  </td>
+                <td>
+                      {{subject.Maths_Title}}
+                     
+                  </td>
+              
+                   <td>
+                      {{subject.Maths_Desc}}
+                     
+                  </td>
+                  
+
+                   <td>
+                      {{subject.Maths_Marks}}
+                     
+                  </td>
+                   <td>
+                      {{subject.Maths_OutOfMarks}}
+                     
+                  </td>
+                <td>
+                      {{subject.Maths_DatePosted}}
+                     
+                  </td>
+                <td>
+                      <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false"><a href="" class="templatemo-edit-btn" style="text-decoration: none; color: white;">Edit</a></button>
+                     
+                  </td>
+                </tr>      
+      {% endfor %}   
+      
+
+                </tbody>
+              </table> 
+              </div>
+            </div>

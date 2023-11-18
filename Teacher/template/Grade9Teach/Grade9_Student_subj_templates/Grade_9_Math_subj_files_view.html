@@ -1,0 +1,122 @@
+{% extends 'TeacherGrd9ClsA.html' %}
+{% load static %}
+
+
+{% block dashboard-body %}
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <div class="row mb-2 mb-xl-3">
+            <div class="col-auto d-none d-sm-block">
+              <h3><strong>Analytics</strong> Dashboard</h3>
+            </div>
+
+            <div class="col-auto ml-auto text-right mt-n1">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                  <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="w-100">
+<div class="card flex-fill w-100">
+              <div class="card">
+                {% if warn %}
+
+                <div class="alert alert-warning alert-outline alert-dismissible" role="alert">
+                      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button> -->
+                      <div class="alert-icon">
+                        <i class="far fa-fw fa-bell"></i>
+                      </div>
+                      <div class="alert-message">
+                        {% if warning_count %}
+                        <p><b> <i class="align-middle" data-feather="alert-triangle"></i> <span class="align-middle">Error! {{warning_count}} found!</span></p></b>
+                        {% endif %}
+                        <strong>Hello there!</strong> There seems to be multiple <b>{{subject_type}} Teachers</b> assign to the same class! Please change it to avoid file distribution error!
+                        <br><p>Multiple users assigned to <b> Class </b> includes: {% for user in users %}
+                        <b>{{user.first_name}} {{user.last_name}}</b>,
+                        {% endfor%}</p>
+
+                      </div>
+                    </div>
+                  {% endif %}
+                <div class="card-header">
+                  <h5 class="card-title">{{students_class}}</h5>
+                  <h6 class="card-subtitle text-muted">View uploaded files</h6>
+                </div>
+                         
+  <div class="table-responsive">
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>Title</th>
+          <th>Desc</th>
+          <th>Action</th>
+          <th>Date posted</th>
+          <th></th>
+     
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for subj in subjs %}
+          <tr class='clickable-row' data-href="">
+                <th>
+                        {{subj.Title }}
+                    </th>
+                    <td>
+                        {{subj.Desc }}
+                    </td>
+                    <td>
+                       <a href="{{ math_file.file_upload.url }}">Download File</a> 
+                    </td>
+                    <td>
+                        {{subj.DatePosted }}
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-warning"  aria-haspopup="true" aria-expanded="false"><a href="{% url 'Teacher:Grd9_Subj_files_view_all_std_delete' assessment_id=subj.id Subj=Subj %}" class="templatemo-edit-btn" style="text-decoration: none; color: white;">Delete</a></button>
+                  </td>
+          </tr>
+        {% endfor %} 
+
+      </tbody>
+
+    </table>
+  </div>
+              </div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+
+          
+
+
+
+        </div>
+      </main>
+      
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}

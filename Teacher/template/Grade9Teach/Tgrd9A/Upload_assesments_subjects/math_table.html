@@ -1,0 +1,246 @@
+<div class="templatemo-content-container">
+            {% for student in students %}
+            <div class="templatemo-content-widget white-bg col-2">
+              <h1>Details</h1><br>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Phone number</td>
+                      <td>{{student.phone_no}}</td>                    
+                    </tr> 
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Email</td>
+                      <td>{{student.email}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div></div></td>
+                      <td>Username</td>
+                      <td>{{student.username}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div></div></td>
+                      <td>Resident</td>
+                      <td>{{student.Resident}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Date of birth</td>
+                      <td>{{student.date_of_birth}}</td>                    
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <th style="font-size: 15px; ">Subjects</th>
+                    <th style="font-size: 15px; "></th>
+                    <th style="font-size: 15px; ">View charts</th>
+                    <th style="font-size: 15px; "></th>
+                    <tr>
+                      <td><div class="circle green-bg"></div></td>
+                      <td>English marks</td>
+                      <td><a href="{% url 'Teacher:Grade_9ClsA_students_English_view' pk=student.id %}" class="templatemo-edit-btn">English </a><br></td>   
+                      <td><a href="{% url 'Teacher:Grade_9_students_view_enter_marks_english' pk=student.id %}" class="templatemo-edit-btn">Update</a></td>                 
+                    </tr> 
+                    <tr>
+                      <td><div class="circle pink-bg"></div></td>
+                      <td>Math marks</td>
+                      <td><a href="{% url 'Teacher:Grade_9ClsA_students_Math_view' pk=student.id %}" class="templatemo-edit-btn">Math </a></td>         
+                      <td><a href="{% url 'Teacher:Grade_9_students_view_enter_marks_math' pk=student.id %}" class="templatemo-edit-btn">Update</a></td>           
+                    </tr> 
+                    <tr>
+                      <td><div class="circle blue-bg"></div></td>
+                      <td>Science marks</td>
+                      <td><a href="{% url 'Teacher:Grade_9ClsA_students_Science_view' pk=student.id %}" class="templatemo-edit-btn">Science </a></td>    
+                      <td><a href="{% url 'Teacher:Grade_9_students_view_enter_marks_science' pk=student.id %}" class="templatemo-edit-btn">Update</a></td>                
+                    </tr> 
+                    <tr>
+                      <td><div class="circle yellow-bg"></div></td>
+                      <td>Social Science marks</td>
+                      <td><a href="{% url 'Teacher:Grade_9ClsA_students_SocialScience_view' pk=student.id %}" class="templatemo-edit-btn">Social Science </a></td>       
+                      <td><a href="{% url 'Teacher:Grade_9_students_view_enter_marks_SocialScience' pk=student.id %}" class="templatemo-edit-btn">Update</a></td>             
+                    </tr> 
+                    <tr>
+                      <td><div class="circle orange-bg"></div></td>
+                      <td>Personal Development marks</td>
+                      <td><a href="{% url 'Teacher:Grade_9ClsA_students_PersonalDevelopment_view' pk=student.id %}" class="templatemo-edit-btn">Personal Development </a></td>                    
+                      <td><a href="{% url 'Teacher:Grade_9_students_view_enter_marks_PersonalDevelopment' pk=student.id %}" class="templatemo-edit-btn">Update</a></td>
+                    </tr> 
+                    
+                  </tbody><br>
+                </table><br><br><br>
+                <table class="table">
+
+                  <tbody>
+                    <th style="font-size: 20px; ">Term 1 Assesment</th>
+                    <tr>
+
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <th><div class="circle green-bg"></div></th>
+                    <th style="font-size: 15px; ">English Assesment</th>
+                    <tr>
+                      <td style="font-size: 15px; ">Title</td>
+                      <td style="font-size: 15px; ">Description</td>
+                      <td style="font-size: 15px; ">Type</td>
+                      <td style="font-size: 15px; ">Marks</td>
+                      <td style="font-size: 15px; ">Date posted</td>   
+                    </tr>         
+
+                     <th><div class="circle pink-bg"></div></th>
+                    <th style="font-size: 15px; ">Math Assesment </th>
+                    <th><a href="" class="templatemo-edit-btn">Update</a></th>
+                    <tr>
+                      <td style="font-size: 15px; font-weight: bold;">Title</td>
+                      <td style="font-size: 15px; font-weight: bold;">Description</td>
+                      <td style="font-size: 15px; font-weight: bold;">Marks</td>
+                      <td style="font-size: 15px; font-weight: bold;">Type</td>
+                      <td style="font-size: 15px; font-weight: bold;">Date posted</td>    
+                    </tr>   
+                   {% if student.T1_A1_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A1_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A1_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A1_Maths_Marks}}/{{student.T1_A1_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A1_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A1_Maths_DatePosted}}</td>   
+                    </tr>
+                    {% else %}
+
+                    {% endif %}
+
+
+                     
+                    {% if student.T1_A2_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A2_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A2_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A2_Maths_Marks}}/{{student.T1_A2_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A2_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A2_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if student.T1_A3_Maths_Title %}
+                
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A3_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A3_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A3_Maths_Marks}}/{{student.T1_A3_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A3_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A3_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+                 
+                     
+                      {% if student.T1_A4_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A4_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A4_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A4_Maths_Marks}}/{{student.T1_A4_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A4_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A4_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+
+                    {% endif %}
+
+                    {% if student.T1_A5_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A5_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A5_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A5_Maths_Marks}}/{{student.T1_A5_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A5_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A5_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if student.T1_A6_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A6_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A6_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A6_Maths_Marks}}/{{student.T1_A6_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A6_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A6_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+                    
+                    {% if student.T1_A7_Maths_Title %}
+                    <tr>
+                      <td style="font-size: 15px; ">{{student.T1_A7_Maths_Title}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A7_Maths_Desc}}</td>
+                      <td style="font-size: 15px; ">{{student.T1_A7_Maths_Marks}}/{{student.T1_A7_Maths_OutOfMarks}}</td>
+                      {% if student.T1_A7_Maths_is_Test %}
+                      <td style="font-size: 15px; ">Test</td>
+                      {% else %}
+                      <td style="font-size: 15px; ">Assignment</td>
+                      {% endif %}
+                      <td style="font-size: 15px; ">{{student.T1_A7_Maths_DatePosted}}</td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+                   
+
+                    <th><div class="circle blue-bg"></div></th>
+                    <th style="font-size: 15px; ">Science Assesment</th>
+                    <tr>
+                      <td style="font-size: 15px; ">Title</td>
+                      <td style="font-size: 15px; ">Type</td>
+                      <td style="font-size: 15px; ">Marks</td>
+                      <td style="font-size: 15px; ">Date taken</td>   
+                    </tr>
+                    <th><div class="circle yellow-bg"></div></th>
+                    <th style="font-size: 15px; ">Social Science Assesment</th>
+                    <tr>
+                      <td style="font-size: 15px; "><a href="{% url 'Teacher:Grd9_ClsA_math_Term_1_assesment1_view' pk=student.id %}">Edit maths Ass1</a></td>
+                      <td style="font-size: 15px; ">Type</td>
+                      <td style="font-size: 15px; ">Marks</td>
+                      <td style="font-size: 15px; ">Date taken</td>   
+                    </tr>
+                    <th><div class="circle orange-bg"></div></th>
+                    <th style="font-size: 15px; ">Personal Development Assesment</th>
+                    <tr>
+                      <td style="font-size: 15px; ">Title</td>
+                      <td style="font-size: 15px; ">Type</td>
+                      <td style="font-size: 15px; ">Marks</td>
+                      <td style="font-size: 15px; ">Date taken</td>   
+                    </tr>              
+                    
+                  </tbody>
+                </table>
+              </div>             
+            </div>

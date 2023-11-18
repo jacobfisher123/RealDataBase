@@ -1,0 +1,116 @@
+{% extends 'TeacherGrd9ClsA.html' %}
+{% load static %}
+
+
+{% block dashboard-body %}
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <div class="row mb-2 mb-xl-3">
+            <div class="col-auto d-none d-sm-block">
+              <h3><strong>Analytics</strong> Dashboard</h3>
+            </div>
+
+            <div class="col-auto ml-auto text-right mt-n1">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                  <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="w-100">
+<div class="card flex-fill w-100">
+              <div class="card">
+               
+                <div class="card-header">
+                  <h5 class="card-title">{{Subj}} Assesments</h5>
+                  <h6 class="card-subtitle text-muted">Choose the Assesment you wish to edit</h6>
+                </div>
+                         <table class="table table-striped table-hover">
+                <thead style=" font-weight: bold;">
+                  <tr>
+                   
+                    <td>Title</td>
+                    <td>Desc</td>
+                    <td>Marks</td>
+                    <td>OutOfMarks</td>
+                    <td>DatePosted</td>
+
+                 
+                   </tr>
+                </thead>
+                
+<!-- 
+
+
+
+   -->  
+                      
+              
+               
+                <tbody>
+                          
+   {% for subject in subjects%}
+              <tr>
+                  <td>
+                      {{subject.Title}}
+                     
+                  </td>
+                   <td>
+                      {{subject.Desc}}
+                     
+                  </td>
+                  
+
+                   <td>
+                      {{subject.Marks}}
+                     
+                  </td>
+                   <td>
+                      {{subject.OutOfMarks}}
+                     
+                  </td>
+                <td>
+                      {{subject.DatePosted}}
+                     
+                  </td>
+                <td>
+                      <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false"><a href="{% url 'Teacher:View_Uploaded_assesment_all_subj' snme=subject.Title%}" class="templatemo-edit-btn" style="text-decoration: none; color: white;">Enter Marks</a></button>
+                     
+                  </td>
+                     <td>
+                      <button type="button" class="btn btn-warning"  aria-haspopup="true" aria-expanded="false"><a href="{% url 'Teacher:delete_math_assessment' snme=subject.Title%}" class="templatemo-edit-btn" style="text-decoration: none; color: white;">Delete</a></button>
+                     
+                  </td>
+
+
+                    
+                  
+                </tr>      
+{% endfor %}   
+      
+
+                </tbody>
+              </table> 
+              </div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+
+          
+
+
+
+        </div>
+      </main>
+{% endblock %}
+
+
+

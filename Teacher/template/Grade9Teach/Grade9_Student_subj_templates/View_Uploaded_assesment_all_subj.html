@@ -1,0 +1,150 @@
+{% extends 'TeacherGrd9ClsA.html' %}
+{% load static %}
+
+
+{% block dashboard-body %}
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <div class="row mb-2 mb-xl-3">
+            <div class="col-auto d-none d-sm-block">
+              <h3><strong>Analytics</strong> Dashboard</h3>
+            </div>
+
+            <div class="col-auto ml-auto text-right mt-n1">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                  <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="w-100">
+<div class="card flex-fill w-100">
+              <div class="card">
+               
+                <div class="card-header">
+                  <h5 class="card-title">{{Subj}} Assesments</h5>
+                  <h6 class="card-subtitle text-muted">Choose the teachers you wish to edit</h6>
+                </div>
+                       <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Title</th>
+                    <th>Desc</th>
+                    <th>Marks</th>
+                    <th>Out of Marks</th>
+                    <th>Date Posted</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                 
+ 
+                   {% for subject in sbj%}
+              <tr>
+                 <td>
+                      {{subject.user_Name.first_name}} {{subject.user_Name.last_name}}
+                     
+                  </td>
+                <td>
+                      {{subject.Title}}
+                     
+                  </td>
+              
+                   <td>
+                      {{subject.Desc}}
+                     
+                  </td>
+                  
+
+                   <td>
+                      {{subject.Marks}}
+                     
+                  </td>
+                   <td>
+                      {{subject.OutOfMarks}}
+                     
+                  </td>
+                <td>
+                      {{subject.DatePosted}}
+                     
+                  </td>
+            
+                  
+                </tr>      
+{% endfor %}    
+                  
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                 <th>Student Name</th>
+                    <th>Title</th>
+                    <th>Desc</th>
+                    <th>Marks</th>
+                    <th>Out of Marks</th>
+                    <th>Date Posted</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+          
+
+
+
+        </div>
+      </main>
+              <!-- Font Awesome -->
+
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+  <script src="{% static 'js/vendor.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+
+  
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'dist/js/demo.js' %}"></script>
+<!-- Page specific script -->
+
+{% endblock %}
+
+
+

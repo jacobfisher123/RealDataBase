@@ -1,0 +1,45 @@
+{% extends 'template/grade6/Grade6std.html' %}
+{% load crispy_forms_tags %}
+{% block dashboard-body %}
+<!-- This code recognizes the code is and labels the grade 6 user !-->
+       {% if user.is_Grade_6_student_classA %}
+                  <h5>Grade 6 student class A</h5>
+                {% elif user.is_Grade_6_student_classB %}
+                  <h5>Grade 6 student class B</h5>
+                {% elif user.is_Grade_6_student_classC %}
+                  <h5>Grade 6 student class C</h5>
+              {% endif %}
+
+<!-- This tag executes if the user is student A !-->
+{% if user.is_Grade_9_student_classA %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd9_classA_teacher %}
+		{% if teacher.Grade_9_Math_subj_teach %}
+			{% if teacher.Grade9_math_teacher_one %}
+			Display Math Data<br>
+			<h6>Math teacher1</h6>
+				{{teacher.username}}<br>
+				{% for math_type_one in math_type_ones %}
+					{{math_type_one.Grd9_Math_Title}}<br>
+					<a href="{{math_type_one.Grd9_Math_file.url}}">Download File</a><br>
+					{{math_type_one.Grd9_Math_Desc}}<br>
+					{{math_type_one.Grd9_Math_posted_date}}<br>
+				{% endfor %}
+				<h1 style="color: green;">ACTIVATED</h1>
+			
+			{% elif teacher.Grade9_math_teacher_two %}
+				<h6>Math teacher 2</h6>
+					{{teacher.username}}<br>
+				{% for math_type_one in math_type_twos %}
+					{{math_type_two.Grd9_Math_Title}}<br>
+					<a href="{{math_type_two.Grd9_Math_file.url}}">Download File</a><br>
+					{{math_type_two.Grd6_Math_Desc}}<br>
+					{{math_type_two.Grd6_Math_posted_date}}<br>
+				{% endfor %}
+					<h1 style="color: green;">ACTIVATED</h1>
+			{% endif %}
+		{% endif %}
+	{% endif %} 
+{% endfor %}<!-- This closes the code !-->
+{% endif %}<!-- This closes the code !-->
+{% endblock %}

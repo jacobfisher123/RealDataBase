@@ -1,0 +1,12 @@
+{
+  "builds":[{
+    "src":"SchoolDatabaseTrial/wsgi.py",
+    "use":"@vercel/python",
+    "config": {"maxLambdaSize":"250mb", "runtime": "python3.9"}
+  }],
+  "routes":[
+    {"src":"/(.*)",
+      "dest":"SchoolDatabaseTrial/wsgi.py"
+    }
+  ]
+    }

@@ -1,0 +1,28 @@
+{% extends 'Grade9Teach/Grd9_subject_type_reg/Grd_sub_reg_homePage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Personal development Teacher type</h1>
+<form method="post" class="admission-form d-block">
+	{% csrf_token %}
+	
+
+		<!-- <input type="submit" value="Save"> !-->
+	<div class="col-lg-6 col-md-6 form-group">                  
+  <div class="templatemo-block margin-bottom-5">
+    <input type="checkbox" name="Grade9_persdev_teacher_one" id="Grade9_persdev_teacher_one">
+    <label for="Grade9_persdev_teacher_one" class="font-weight-400"><span></span>{{form.Grade9_persdev_teacher_one.name}}</label> 
+  </div>
+  <div class="templatemo-block margin-bottom-5">
+    <input type="checkbox" name="Grade9_persdev_teacher_two" id="Grade9_persdev_teacher_two">
+    <label for="Grade9_persdev_teacher_two" class="font-weight-400"><span></span>{{form.Grade9_persdev_teacher_two.name}}</label> 
+  </div>
+
+   <div class="templatemo-block margin-bottom-5">
+    <button  class="templatemo-blue-button" type="submit">Save</button>
+  </div>
+
+</form>
+
+
+
+{% endblock %}

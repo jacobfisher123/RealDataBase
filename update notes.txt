@@ -1,0 +1,12 @@
+#update notes
+>filter the assesments notes /
+>use the drop down button for the Assignment and Test to activate the Boolean field/
+>migrate the Grade9_views back into the Grade_9_urls for cleanliness of coding /
+>remove any unwanted codes on Grd9_ClsA_std codes /
+>migrate the Grd9_ClsA_std codes outside the folder /
+>create the delete view from the assesments
+>create the teacher file upload and regulate the accesability amongst the student
+>create the delete function of the teacher file upload
+
+
+

@@ -1,0 +1,46 @@
+{% extends 'headminView.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block dashboard-body %}
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Tables</h1>
+
+					<div class="row">
+						
+
+
+
+						<div class="col-md-8 col-xl-9">
+							<div class="card">
+            <div class="col-12 col-xl-6">
+              <div class="card">
+                <div class="card-header">
+                   <h1 class="h3 mb-3">{{user_type}}</h1>
+
+                  <h6 class="card-subtitle text-muted">Assign classes to the teacher</h6>
+                </div>
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy|cut:"*" }}
+
+
+                    <div class="form-group">
+                      <p style="color: red;">{{error|crispy}}</p>
+                      <button type="submit" class="templatemo-blue-button">Register</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+    
+{% endblock %}
+

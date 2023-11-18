@@ -1,0 +1,150 @@
+{% if user.is_Grade_6_student_classA %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd6_classA_teacher %}
+		{% if teacher.Grade_6_Math_subj_teach %}
+			{% if teacher.Grade_6_math_teacher_one %}
+			Display Math Data<br>
+			<h6>Math teacher</h6>
+				{{teacher.username}}<br>
+				{% for math_type_one in math_type_ones %}
+					{{math_type_one.Grd6_Math_Title}}<br>
+					<a href="{{teacher.Grd6_Math_file.url}}">Download File</a><br>
+					{{math_type_one.Grd6_Math_Desc}}<br>
+					{{math_type_one.Grd6_Math_posted_date}}<br>
+				{% endfor %}
+				<h1 style="color: green;">ACTIVATED</h1>
+			
+			{% elif teacher.Grade_6_math_teacher_two %}
+				<h6>Math teacher</h6>
+				{{teacher.username}}<br>
+			{% for math_type_two in math_type_ones %}
+				{{math_type_two.Grd6_Math_Title}}<br>
+				<a href="{{teacher.Grd6_Math_file.url}}">Download File</a><br>
+				{{math_type_two.Grd6_Math_Desc}}<br>
+				{{math_type_two.Grd6_Math_posted_date}}<br>
+			{% endfor %}
+				<h1 style="color: green;">ACTIVATED</h1>
+			{% endif %}
+			
+		{% endif %}
+
+	{% endif %} 
+{% endfor %}<!-- This closes the code !-->
+
+<!-- This tag executes if the user is student B !-->
+{% elif user.is_Grade_6_student_classB %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd6_classB_teacher %}
+		{% if teacher.Grade_6_Math_subj_teach %}
+		
+		Display Math Data<br>
+		<h6>Math teacher</h6>
+			{{teacher.username}}<br>
+			{{teacher.Grd6_Math_Title}}<br>
+			<a href="{{teacher.Grd6_Math_file.url}}">Download File</a><br>
+			{{teacher.Grd6_Math_Desc}}<br>
+			{{teacher.Grd6_Math_posted_date}}<br>
+	
+		<h1 style="color: green;">ACTIVATED</h1>
+
+		{% endif %}
+	
+	{% endif %}<!-- This closes the code !-->
+{% endfor %}<!-- This closes the code !-->
+
+<!-- This tag executes if the user is student C !-->
+{% elif user.is_Grade_6_student_classC %}
+{% for teacher in teachers %}
+	{% if teacher.is_grd6_classC_teacher %}
+		{% if teacher.Grade_6_Math_subj_teach %}
+		
+		Display Math Data<br>
+		<h6>Math teacher</h6>
+			{{teacher.username}}<br>
+			{{teacher.Grd6_Math_Title}}<br>
+			<a href="{{teacher.Grd6_Math_file.url}}">Download File</a><br>
+			{{teacher.Grd6_Math_Desc}}<br>
+			{{teacher.Grd6_Math_posted_date}}<br>
+	
+		<h1 style="color: green;">ACTIVATED</h1>
+
+		{% endif %}
+	
+	{% endif %}
+{% endfor %}<!-- This closes the code !-->
+
+{% endif %}<!-- This closes the code !-->
+
+
+
+<!-- This is gonna work because I wrote it in a way that no two SAME math teacher will upload file to the same student !-->
+
+<!-- EXPANSION OF CODE !-->
+<!-- PART 2 !-->
+{% if user.is_Grade_6_student_classA %}
+
+	{% for teacher in teachers %}
+
+		{% if teacher.Grade_6_math_teacher_one %}
+
+			{% if teacher.is_grd6_classA_teacher %}
+
+				{% if teacher.Grade_6_Math_subj_teach %}
+
+					Display Math data of Teacher type one <!-- This is the isolated code that I want to display !-->
+
+				{% endif %}
+
+			{% endif %}
+
+
+		{% elif teacher.Grade_6_math_teacher_two %}
+
+			{% if teacher.is_grd6_classA_teacher %}
+
+				{% if teacher.Grade_6_Math_subj_teach %}
+
+					Display Math data of Teacher type Data2 <!-- This is the isolated code that I want to display !-->
+
+				{% endif %}
+
+			{% endif %}
+
+		{% endif %}
+		
+	{% endfor %}
+
+{% elif user.is_Grade_6_student_classB %}
+
+	{% for teacher in teachers %}
+
+		{% if teacher.Grade_6_math_teacher_one %}
+
+			{% if teacher.is_grd6_classB_teacher %}
+
+				{% if teacher.Grade_6_Math_subj_teach %}
+
+					Display Math data of Teacher type one <!-- This is the isolated code that I want to display !-->
+
+				{% endif %}
+
+			{% endif %}
+
+
+		{% elif teacher.Grade_6_math_teacher_two %}
+
+			{% if teacher.is_grd6_classB_teacher %}
+
+				{% if teacher.Grade_6_Math_subj_teach %}
+
+					Display Math data of Teacher type Data2 <!-- This is the isolated code that I want to display !-->
+
+				{% endif %}
+
+			{% endif %}
+
+		{% endif %}
+
+	{% endfor %}
+
+{% endif %}

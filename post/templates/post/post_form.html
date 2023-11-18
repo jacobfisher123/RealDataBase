@@ -1,0 +1,14 @@
+{% extends "base1.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+<form class=" form-group " action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form show_label=false %}
+    <div class="col"><input type="submit" class="btn btn-dark" value="Submit">
+        <a href="{% url 'posts' %}" class="btn btn-danger"><i class="fa-solid fa-ban"></i></a>
+    </div>
+
+</form>
+{% endblock %}

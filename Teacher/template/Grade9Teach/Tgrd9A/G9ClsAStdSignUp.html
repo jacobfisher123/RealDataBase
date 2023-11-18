@@ -1,0 +1,43 @@
+{% extends 'TeacherGrd9ClsA.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block dashboard-body %}
+<div class="container-fluid p-0">
+
+         
+<!-- <div id="div_id_is_Grade_9_teacher_classB" class="form-check"> <input type="checkbox" name="is_Grade_9_teacher_classB" class="checkboxinput form-check-input" id="id_is_Grade_9_teacher_classB"> <label for="id_is_Grade_9_teacher_classB" class="form-check-label">
+                    Is Grade 9 teacher classB
+                </label> </div> -->
+          <div class="row">
+
+            <div class="col-12 col-xl-6">
+              <div class="card">
+                <div class="card-header">
+                   <h1 class="h3 mb-3">{{user_type}}</h1>
+
+                  <h6 class="card-subtitle text-muted">Grade 9 students registration</h6>
+                </div>
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy|cut:"*" }}
+
+<!--                     <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                <option selected="">Choose...</option>
+                <option id="id_is_Grade_9_teacher_classB"> Is Grade 9 teacher classB</option>
+              </select>
+                      </div>     -->           
+                    
+                    <div class="form-group">
+                      <p style="color: red;">{{error|crispy}}</p>
+                      <button type="submit" class="templatemo-blue-button">Register</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</div> 
+   </div>
+
+{% endblock %}

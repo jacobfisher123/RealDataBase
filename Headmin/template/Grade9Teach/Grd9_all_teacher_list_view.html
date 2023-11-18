@@ -1,0 +1,178 @@
+{% extends 'headminView.html' %}
+{% load static %}
+
+
+{% block dashboard-body %}
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <div class="row mb-2 mb-xl-3">
+            <div class="col-auto d-none d-sm-block">
+              <h3><strong>Analytics</strong> Dashboard</h3>
+            </div>
+
+            <div class="col-auto ml-auto text-right mt-n1">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+                  <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="w-100">
+<div class="card flex-fill w-100">
+              <div class="card">
+                {% if warn %}
+
+                <div class="alert alert-warning alert-outline alert-dismissible" role="alert">
+                      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button> -->
+                      <div class="alert-icon">
+                        <i class="far fa-fw fa-bell"></i>
+                      </div>
+                      <div class="alert-message">
+                        {% if warning_count %}
+                        <p><b> <i class="align-middle" data-feather="alert-triangle"></i> <span class="align-middle">Error! {{warning_count}} found!</span></p></b>
+                        {% endif %}
+                        <strong>Hello there!</strong> There seems to be multiple <b>{{subject_type}} Teachers</b> assign to the same class! Please change it to avoid file distribution error!
+                        <br><p>Multiple users assigned to <b> Class </b> includes: {% for user in users %}
+                        <b>{{user.first_name}} {{user.last_name}}</b>,
+                        {% endfor%}</p>
+
+                      </div>
+                    </div>
+                  {% endif %}
+                <div class="card-header">
+                  <h5 class="card-title">List of Grade 9 Teachers</h5>
+                  <h6 class="card-subtitle text-muted">Choose the teachers you wish to edit</h6>
+                </div>
+
+                 
+
+
+
+
+ <div class="table-responsive">
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+        <td>First name</td>
+                    <td>Last name</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Class</td>
+                    <td>Classes assigned</td>
+                    <td>Subject taken</td>
+
+                    
+                    <td>View Details</td>
+     
+        </tr>
+      </thead>
+      <tbody>
+ {% for teacher in teachers %}
+          <tr class='clickable-row' data-href="{% url 'headmin:Grade_9_Teacher_list_details' pk=teacher.id%}">
+              <th>
+                       {{teacher.first_name}}
+                    </th>
+                <th>
+                       {{teacher.last_name}}
+                    </th>
+                     <td >
+              {{teacher.username}}
+          </td>
+          <td>
+              {{teacher.email}}
+          </td>
+          
+          <td>
+             {% if teacher.is_Grade_9_teacher_classA %}
+             A
+             {% elif teacher.is_Grade_9_teacher_classB %}
+             B
+             {% elif teacher.is_Grade_9_teacher_classC %}
+             C
+             {% elif teacher.is_Grade_9_teacher_classD %}
+             D
+             {% elif teacher.is_Grade_9_teacher_classE %}
+             E
+             {% else %}
+             NONE
+             {%endif%}
+
+          </td>
+          <td>
+              {% if teacher.is_grd9_classA_teacher and teacher.is_grd9_classB_teacher and teacher.is_grd6_classC_teacher %}
+                A, B, C
+              {% elif teacher.is_grd9_classA_teacher and teacher.is_grd9_classB_teacher %}
+                A, B 
+              {% elif teacher.is_grd9_classA_teacher and teacher.is_grd9_classC_teacher %}
+                A, C 
+              {% elif teacher.is_grd9_classB_teacher and teacher.is_grd9_classC_teacher %}
+                B, C
+              {% elif teacher.is_grd9_classA_teacher %}
+                A 
+              {% elif teacher.is_grd9_classB_teacher %}
+                B  
+              {% elif teacher.is_grd9_classC_teacher %}
+                C 
+              {% else %}
+                NONE 
+              {%endif%}
+          </td>
+ <td>
+            {% if teacher.Grade_9_Math_subj_teach %}
+             Math 
+           {% elif teacher.Grade_9_Engl_subj_teach %}
+           English
+           {% elif teacher.Grade_9_Scn_subj_teach %}
+           Science
+           {% elif teacher.Grade_9_SocSnc_subj_teach %}
+           Social science
+           {% elif teacher.Grade_9_PersDev_subj_teach %}
+           Personal Development
+            {% else %}
+            NONE
+            {% endif %}
+          </td>
+
+
+          <td>
+            <a class="templatemo-edit-btn" href="{% url 'headmin:Grade_9_Teacher_list_details' pk=teacher.id%}">Details</a>
+          </td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div> 
+              </div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+
+          
+
+
+
+        </div>
+      </main>
+      
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}
+{% endblock %}
+
+
+

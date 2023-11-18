@@ -1,0 +1,397 @@
+{% extends 'headminView.html' %}
+{% load static %}
+{% block dashboard-body %}
+<body>  
+    
+    <!-- Left column -->
+    <div class="templatemo-flex-row">
+      <div class="templatemo-sidebar">
+        <header class="templatemo-site-header">
+          <div class="square"></div>
+          <h1>Admin</h1>
+        </header>
+        <div class="profile-photo-container">
+          <img src="{% static 'visual_admin/images/profile-photo.jpg' %}" alt="Profile Photo" class="img-responsive">  
+          <div class="profile-photo-overlay"></div>
+        </div>      
+        <!-- Search box -->
+        <form class="templatemo-search-form" role="search">
+          <div class="input-group">
+              <button type="submit" class="fa fa-search"></button>
+              <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">           
+          </div>
+        </form>
+        <div class="mobile-menu-icon">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        <nav class="templatemo-left-nav">          
+          <ul>
+            <li><a href="{% url 'headmin:HeadminView'  %}" ><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
+            <li><a href="data-visualization.html"><i class="fa fa-bar-chart fa-fw"></i>Charts</a></li>
+            <li><a href="data-visualization.html"><i class="fa fa-database fa-fw"></i>Data Visualization</a></li>
+   
+            <li><a href="{% url 'headmin:Display_all_teacher_list_view' %}" class="active"><i class="fa fa-users fa-fw"></i>Manage Teachers</a></li>
+            <li><a href="{% url 'headmin:all_teacher_reg' %}"><i class="fa fa-plus"></i>Add teachers</a></li>
+            
+            <li><a href="preferences.html"><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+          </ul>  
+        </nav>
+      </div>
+  
+      <!-- Main content --> 
+      <div class="templatemo-content col-1 light-gray-bg">
+        <div class="templatemo-top-nav-container">
+          <div class="row">
+            <nav class="templatemo-top-nav col-lg-12 col-md-12">
+              <ul class="text-uppercase">
+                <li><a href="" class="active">Admin panel</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Overview</a></li>
+                <li><a href="login.html">Sign in form</a></li>
+              </ul>  
+            </nav> 
+          </div>
+        </div>
+        
+        <!-- OPENING MAIN DASHBOARD --> 
+     
+
+
+
+
+
+
+<div class="templatemo-content-container">
+          <div class="templatemo-content-widget no-padding">
+            <div class="panel panel-default table-responsive">
+              <div class="panel-heading"><h2 class="text-uppercase">Grade 9 Teacher Details</h2></div>
+              <table class="table table-striped table-bordered templatemo-user-table">
+                <thead>
+                  <tr>
+                    <td><a href="" class="white-text templatemo-sort-by">Username<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">Email<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">Class<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">No_ of students<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">Subject specialized<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">Teacher type<span class=""></span></a></td>
+
+                    
+                    <td><a href="" class="white-text templatemo-sort-by">Classes assigned<span class=""></span></a></td>
+                    <td><a href="" class="white-text templatemo-sort-by">Update<span class=""></span></a></td>
+                   
+                    
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+          {% for teacher in teachers %}
+        <tr>
+          <th scope="row">
+              {{teacher.username}}
+          </th>
+          <td>
+              {{teacher.email}}
+          </td>
+          <td>
+             {% if teacher.is_Grade_9_teacher_classA %}
+             A
+             {% elif teacher.is_Grade_9_teacher_classB %}
+             B
+             {% elif teacher.is_Grade_9_teacher_classC %}
+             C
+             {% else %}
+             NONE
+             {%endif%}
+
+          </td>
+         
+          
+
+
+          <td>
+            <!-- number of students codes !-->
+              {% if teacher.is_Grade_9_teacher_classA  %}
+              {{sum_std_clsA}} <a href="">View list</a>
+              {% elif teacher.is_Grade_9_teacher_classB %}
+              {{sum_std_clsB}} <a href="">View list</a>
+              {% elif teacher.is_Grade_9_teacher_classC %}
+              {{sum_std_clsC}} <a href="">View list</a>
+              {% else %}
+              NONE
+              {% endif %}
+
+
+          </td>
+          <td>
+            <!--subject specialities codes !-->
+              {% if teacher.Grade_9_Math_subj_teach  %}
+              Math subject  <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade_9_Engl_subj_teach %}
+              English subject  <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade_9_Scn_subj_teach %}
+              Science  <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade_9_SocSnc_subj_teach %}
+              Social Science  <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade_9_PersDev_subj_teach %}
+              Personal Development  <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Edit</a>
+              {% else %} 
+                <a href="{% url 'headmin:Grd9_Update_Teacher_file_regulator' pk=teacher.id%}">Add</a>
+              {% endif %}
+          </td>
+          <td>
+            {% if teacher.Grade_9_Math_subj_teach %}<!-- Math display regulator !-->  
+              {% if teacher.Grade9_math_teacher_one %}
+                Math Teacher 1<a href="{% url 'headmin:Grd9_Update_math_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade9_math_teacher_two %}
+                Math Teacher 2<a href="{% url 'headmin:Grd9_Update_math_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% else %}
+              <a href="{% url 'headmin:Grd9_Update_math_teacher_type_regulator' pk=teacher.id%}">Update</a>
+              {% endif %}
+
+
+
+            {% elif teacher.Grade_9_Engl_subj_teach %} <!-- English display regulator !-->
+              {% if teacher.Grade9_engl_teacher_one %}
+                English Teacher 1<a href="{% url 'headmin:Grd9_Update_english_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade9_engl_teacher_two %}
+                English Teacher 2<a href="{% url 'headmin:Grd9_Update_english_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% else %}
+              <a href="{% url 'headmin:Grd9_Update_english_teacher_type_regulator' pk=teacher.id%}">Update</a>
+              {% endif %}
+
+            {% elif teacher.Grade_9_Scn_subj_teach %}<!-- Science display regulator !-->
+              {% if teacher.Grade9_scn_teacher_one %}
+                Science Teacher 1<a href="{% url 'headmin:Grd9_Update_science_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade9_scn_teacher_two %}
+                Science Teacher 2<a href="{% url 'headmin:Grd9_Update_science_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% else %}
+              <a href="{% url 'headmin:Grd9_Update_science_teacher_type_regulator' pk=teacher.id%}">Update</a>
+              {% endif %}
+
+            {% elif teacher.Grade_9_SocSnc_subj_teach %}<!-- Social Science display regulator !-->
+              {% if teacher.Grade9_socscn_teacher_one %}
+                Social Science Teacher 1<a href="{% url 'headmin:Grd9_Update_socialscience_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade9_socscn_teacher_two %}
+                Social Science Teacher 2<a href="{% url 'headmin:Grd9_Update_socialscience_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% else %}
+              <a href="{% url 'headmin:Grd9_Update_socialscience_teacher_type_regulator' pk=teacher.id%}">Update</a>
+              {% endif %}
+      
+        
+            {% elif teacher.Grade_9_PersDev_subj_teach %}<!-- Personal development display regulator !-->
+              {% if teacher.Grade9_persdev_teacher_one %}
+                Personal Development Teacher 1<a href="{% url 'headmin:Grd9_Update_persdev_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.Grade9_persdev_teacher_two %}
+                Personal Development Teacher 2<a href="{% url 'headmin:Grd9_Update_persdev_teacher_type_regulator' pk=teacher.id%}">Edit</a>
+              
+              {% else %}
+              <a href="{% url 'headmin:Grd9_Update_persdev_teacher_type_regulator' pk=teacher.id%}">Update</a>
+              {% endif %}
+            {% else %}
+              NONE
+            {% endif %}
+
+
+
+          </td>
+          <td>
+              {% if teacher.is_grd9_classA_teacher and teacher.is_grd9_classB_teacher and teacher.is_grd9_classC_teacher %}
+                A, B, C <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classA_teacher and teacher.is_grd9_classB_teacher %}
+                A, B <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classA_teacher and teacher.is_grd9_classC_teacher %}
+                A, C <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classB_teacher and teacher.is_grd9_classC_teacher %}
+                B, C <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classA_teacher %}
+                A <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classB_teacher %}
+                B  <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+              {% elif teacher.is_grd9_classC_teacher %}
+                C <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Edit</a>
+             
+              {% else %}
+                NONE <a href="{% url 'headmin:Grd9_Update_class_assign_regulator' pk=teacher.id%}">Add</a>
+              {%endif%}
+          </td>
+          <td>
+            <a href="{% url 'headmin:TeacherGrd9_ClassA_SignUp_Detail_view'  pk=teacher.id %}">Update</a>
+          </td>
+          
+        </tr>
+
+        {% endfor %}
+      </tbody>
+              </table>    
+            </div>                          
+          </div>          
+          
+         
+         
+       
+        </div>
+<div class="templatemo-content-container">
+            {% for teacher in teachers %}
+            <div class="templatemo-content-widget white-bg col-2">
+              <h1>Details</h1><br>
+              
+              <div class="media margin-bottom-30">
+
+                <div class="media-left padding-right-25">
+                  <a href="#">
+                    <img class="media-object img-circle templatemo-img-bordered" style="width: 125px; height: 125px;" src="{{teacher.Grd9_profile_picture.url}}" alt="Sunset">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h2 class="media-heading text-uppercase blue-text">{{teacher.full_name}}</h2>
+                  <p>Teacher details</p>
+                </div>        
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Phone number</td>
+                      <td>{{teacher.phone_no}}</td>                    
+                    </tr> 
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Email</td>
+                      <td>{{teacher.email}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div></div></td>
+                      <td>Username</td>
+                      <td>{{teacher.username}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div></div></td>
+                      <td>Resident</td>
+                      <td>{{teacher.Resident}}</td>                    
+                    </tr>  
+                    <tr>
+                      <td><div ></div></td>
+                      <td>Date of birth</td>
+                      <td>{{teacher.date_of_birth}}</td>                    
+                    </tr>
+                    <tr>
+
+
+
+
+                      <td></td>
+                      <td>Subject specialized</td>
+                        {% if teacher.Grade_9_Math_subj_teach %}
+                      <td><div class="circle green-bg"></div>Math</td>
+                        {% elif teacher.Grade_9_Engl_subj_teach %}
+                      <td><div class="circle pink-bg"></div>English</td>
+                        {% elif teacher.Grade_9_Scn_subj_teach %}
+                      <td><div class="circle blue-bg"></div>Science</td>
+                        {% elif teacher.Grade_9_SocSnc_subj_teach %}
+                      <td><div class="circle yellow-bg"></div>Social science</td>
+                        {% elif teacher.Grade_9_PersDev_subj_teach %}
+                      <td><div class="circle orange-bg"></div>Personal development</td>
+                        {% else %}
+                        <td><p style="color: red;">Not assigned</p></td>
+
+                        {% endif %}
+                        
+                      
+                    </tr>
+                   
+                   
+                  </tbody><br>
+                </table>
+              
+                </table>
+              </div>             
+            </div>
+                      <footer class="text-right">
+             <a  class="templatemo-blue-button text-right"  href="{% url 'headmin:Grade_9_teacher_list' %}">Back</a>
+          </footer>  
+ {% endfor %}
+        
+
+
+
+
+
+        
+        </div>
+
+      </div>
+        
+        <!-- CLOSING MAIN DASHBOARD --> 
+      </div>
+    </div>
+    <!-- JS -->
+    <script src="{% static 'visual_admin/js/jquery-1.11.2.min.js' %}"></script>      <!-- jQuery -->
+    <script src="{% static 'visual_admin/js/jquery-migrate-1.2.1.min.js' %}"></script> <!--  jQuery Migrate Plugin -->
+    <script src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
+    <script>
+      /* Google Chart 
+      -------------------------------------------------------------------*/
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart); 
+      
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          data.addRows([
+            ['Mushrooms', 3],
+            ['Onions', 1],
+            ['Olives', 1],
+            ['Zucchini', 1],
+            ['Pepperoni', 2]
+          ]);
+
+          // Set chart options
+          var options = {'title':'How Much Pizza I Ate Last Night'};
+
+          // Instantiate and draw our chart, passing in some options.
+          var pieChart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+          pieChart.draw(data, options);
+
+          var barChart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
+          barChart.draw(data, options);
+      }
+
+      $(document).ready(function(){
+        if($.browser.mozilla) {
+          //refresh page on browser resize
+          // http://www.sitepoint.com/jquery-refresh-page-browser-resize/
+          $(window).bind('resize', function(e)
+          {
+            if (window.RT) clearTimeout(window.RT);
+            window.RT = setTimeout(function()
+            {
+              this.location.reload(false); /* false to get page from cache */
+            }, 200);
+          });      
+        } else {
+          $(window).resize(function(){
+            drawChart();
+          });  
+        }   
+      });
+      
+    </script>
+    <script type="text/javascript" src="{% static 'visual_admin/js/templatemo-script.js' %}"></script>      <!-- Templatemo Script -->
+  </body>
+
+
+     
+{% endblock %}
